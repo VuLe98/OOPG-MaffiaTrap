@@ -154,7 +154,7 @@ public class MaffiaTrapApp extends GameEngine implements IPlayer {
 
     private void createBully(){
         Random random = new Random();
-        Bully bully = new Bully(this,800, groundBorderY + 100);
+        Bully bully = new Bully(this,worldWidth - 100, groundBorderY + 100);
         addGameObject(bully);
     }
 

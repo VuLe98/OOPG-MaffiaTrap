@@ -36,7 +36,8 @@ public class Chest extends SpriteObject {
                 powerUp = new Pistol(app, player, xPowerUp, (int) y);
                 break;
             case 2:
-                powerUp = new ExtraLife(app, player, xPowerUp, (int) y);
+                int yExtraLife = (int) y - 100;
+                powerUp = new ExtraLife(app, player, xPowerUp, yExtraLife);
                 break;
         }
         app.addGameObject(powerUp);

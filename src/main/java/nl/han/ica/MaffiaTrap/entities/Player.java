@@ -1,5 +1,6 @@
 package nl.han.ica.MaffiaTrap.entities;
 
+import nl.han.ica.MaffiaTrap.enemies.Bully;
 import nl.han.ica.MaffiaTrap.enemies.Lamp;
 import nl.han.ica.MaffiaTrap.standardGameObjects.Door;
 import nl.han.ica.MaffiaTrap.gameStates.MaffiaState;
@@ -69,14 +70,21 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithGameO
                 app.deleteGameObject(l);
                 app.countOffExtraLife();
                 if(app.getCurrentLives() == 0){
-                    speed = 0;
-                    setxSpeed(0);
-                    setY(0);
-                    setX(0);
-                    app.state = MaffiaState.GAMEOVER;
+                    getGameOver();
                 }
             }
+            if(l instanceof Bully){
+                getGameOver();
+            }
         }
+    }
+
+    private void getGameOver(){
+        speed = 0;
+        setxSpeed(0);
+        setY(0);
+        setX(0);
+        app.state = MaffiaState.GAMEOVER;
     }
 
     /**
