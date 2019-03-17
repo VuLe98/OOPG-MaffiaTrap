@@ -1,6 +1,6 @@
 package nl.han.ica.MaffiaTrap.powerUps;
 
-import nl.han.ica.MaffiaTrap.MaffiaTrapApp;
+import nl.han.ica.MaffiaTrap.main.MaffiaTrapApp;
 import nl.han.ica.MaffiaTrap.entities.IPlayer;
 import nl.han.ica.MaffiaTrap.entities.Player;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;

@@ -1,15 +1,15 @@
 package nl.han.ica.MaffiaTrap.entities;
 
-import nl.han.ica.MaffiaTrap.Door;
-import nl.han.ica.MaffiaTrap.MaffiaTrapApp;
-import nl.han.ica.MaffiaTrap.powerUps.ExtraLife;
+import nl.han.ica.MaffiaTrap.enemies.Lamp;
+import nl.han.ica.MaffiaTrap.standardGameObjects.Door;
+import nl.han.ica.MaffiaTrap.gameStates.MaffiaState;
+import nl.han.ica.MaffiaTrap.main.MaffiaTrapApp;
 import nl.han.ica.MaffiaTrap.powerUps.PowerUp;
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.*;
 import nl.han.ica.OOPDProcessingEngineHAN.Engine.GameEngine;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.AnimatedSpriteObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
-import nl.han.ica.OOPDProcessingEngineHAN.Persistence.IPersistence;
 
 import java.util.List;
 
@@ -48,7 +48,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithGameO
             if (g instanceof Door) {
                 setX(world.getWidth() - 90);
                 speed = 0;
-                app.state = nl.han.ica.MaffiaTrap.MaffiaState.GAMEWIN;
+                app.state = MaffiaState.GAMEWIN;
             }
 
             if (g instanceof Chest) {
@@ -61,6 +61,21 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithGameO
                 app.deleteGameObject(g);
             }
 
+
+        }
+
+        for(GameObject l: collidedGameObjects){
+            if (l instanceof Lamp) {
+                app.deleteGameObject(l);
+                app.countOffExtraLife();
+                if(app.getCurrentLives() == 0){
+                    speed = 0;
+                    setxSpeed(0);
+                    setY(0);
+                    setX(0);
+                    app.state = MaffiaState.GAMEOVER;
+                }
+            }
         }
     }
 

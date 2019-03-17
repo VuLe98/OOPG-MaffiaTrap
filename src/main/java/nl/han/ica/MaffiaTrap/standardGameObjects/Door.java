@@ -1,5 +1,6 @@
-package nl.han.ica.MaffiaTrap;
+package nl.han.ica.MaffiaTrap.standardGameObjects;
 
+import nl.han.ica.MaffiaTrap.main.MaffiaTrapApp;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.AnimatedSpriteObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 

@@ -1,13 +1,15 @@
-package nl.han.ica.MaffiaTrap;
+package nl.han.ica.MaffiaTrap.main;
 
-import nl.han.ica.MaffiaTrap.enemies.Lamp;
+import nl.han.ica.MaffiaTrap.enemies.Bully;
+import nl.han.ica.MaffiaTrap.gameStates.GameOver;
+import nl.han.ica.MaffiaTrap.standardGameObjects.Door;
+import nl.han.ica.MaffiaTrap.standardGameObjects.Ground;
+import nl.han.ica.MaffiaTrap.gameStates.MaffiaState;
 import nl.han.ica.MaffiaTrap.enemies.LampSpawner;
 import nl.han.ica.MaffiaTrap.entities.Chest;
 import nl.han.ica.MaffiaTrap.entities.IPlayer;
-import nl.han.ica.MaffiaTrap.powerUps.Pistol;
 import nl.han.ica.MaffiaTrap.entities.Player;
 import nl.han.ica.MaffiaTrap.gameStates.Winner;
-import nl.han.ica.MaffiaTrap.powerUps.ExtraLife;
 import nl.han.ica.OOPDProcessingEngineHAN.Dashboard.Dashboard;
 import nl.han.ica.OOPDProcessingEngineHAN.Engine.GameEngine;
 import nl.han.ica.OOPDProcessingEngineHAN.Persistence.FilePersistence;
@@ -34,7 +36,7 @@ public class MaffiaTrapApp extends GameEngine implements IPlayer {
 
     public static void main(String[] args) {
 
-        PApplet.main(new String[]{"nl.han.ica.MaffiaTrap.MaffiaTrapApp"});
+        PApplet.main(new String[]{"nl.han.ica.MaffiaTrap.main.MaffiaTrapApp"});
     }
 
     /**
@@ -52,7 +54,9 @@ public class MaffiaTrapApp extends GameEngine implements IPlayer {
 
         createViewWithoutViewport(worldWidth,worldHeight);
         createPlayer();
+        createBully();
 
+        createLampSpawner();
         createChest();
 
         state = MaffiaState.START_OF_GAME;
@@ -76,11 +80,14 @@ public class MaffiaTrapApp extends GameEngine implements IPlayer {
 
         if(state == MaffiaState.START_OF_GAME) {
             createGameObjects();
-            createLampSpawner();
         }
         else if (state == MaffiaState.GAMEWIN) {
             Winner doorWin = new Winner(this);
             this.addGameObject(doorWin, 0, 0);
+        }
+        else if(state == MaffiaState.GAMEOVER){
+            GameOver loser = new GameOver(this);
+            this.addGameObject(loser,0,0);
         }
     }
 
@@ -145,6 +152,13 @@ public class MaffiaTrapApp extends GameEngine implements IPlayer {
         LampSpawner lampSpawner = new LampSpawner(this,0.5);}
 
 
+    private void createBully(){
+        Random random = new Random();
+        Bully bully = new Bully(this,800, groundBorderY + 100);
+        addGameObject(bully);
+    }
+
+
     /**
      * Initialiseert de tilemap
      */
@@ -166,6 +180,10 @@ public class MaffiaTrapApp extends GameEngine implements IPlayer {
         currentLives--;
         persistence.saveData(Integer.toString(currentLives));
         refreshDashboardText();
+    }
+
+    public int getCurrentLives(){
+        return currentLives;
     }
 
 

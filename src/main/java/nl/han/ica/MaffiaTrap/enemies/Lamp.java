@@ -1,12 +1,12 @@
 package nl.han.ica.MaffiaTrap.enemies;
 
-import nl.han.ica.MaffiaTrap.MaffiaTrapApp;
-import nl.han.ica.OOPDProcessingEngineHAN.Objects.AnimatedSpriteObject;
+import nl.han.ica.MaffiaTrap.main.MaffiaTrapApp;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
+import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
 
 import java.util.Random;
 
-public class Lamp extends AnimatedSpriteObject {
+public class Lamp extends SpriteObject {
 
     private MaffiaTrapApp app;
 
@@ -15,9 +15,8 @@ public class Lamp extends AnimatedSpriteObject {
      */
 
     public Lamp (MaffiaTrapApp app){
-        super(new Sprite("src/main/java/nl/han/ica/superMeron/media/lamp.png"),3);
+        super(new Sprite("src/main/java/nl/han/ica/MaffiaTrap/media/lamp.png"));
         this.app = app;
-        setCurrentFrameIndex(1);
 
     }
 
@@ -27,15 +26,14 @@ public class Lamp extends AnimatedSpriteObject {
 
     @Override
     public void update() {
-        //Valsnelheid lampen//
-        Random getal = new Random();
-        int speed = getal.nextInt(2);
+        //Valsnelheid + richting lampen//
+        int speed = 1;
         setDirectionSpeed(180, speed);
 
         //Zorgt dat lampen niet verder dan op het ondergrond vallen
         int valgrensY = 300;
         if (getY() >= valgrensY) {
-            setY(valgrensY);
+            app.deleteGameObject(this);
         }
     }
 }

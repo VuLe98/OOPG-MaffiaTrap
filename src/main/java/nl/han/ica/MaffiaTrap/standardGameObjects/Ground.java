@@ -1,5 +1,6 @@
-package nl.han.ica.MaffiaTrap;
+package nl.han.ica.MaffiaTrap.standardGameObjects;
 
+import nl.han.ica.MaffiaTrap.main.MaffiaTrapApp;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Tile.TileType;
 import nl.han.ica.waterworld.tiles.BoardsTile;

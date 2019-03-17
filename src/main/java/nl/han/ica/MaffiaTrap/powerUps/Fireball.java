@@ -1,12 +1,15 @@
 package nl.han.ica.MaffiaTrap.powerUps;
 
-import nl.han.ica.MaffiaTrap.MaffiaTrapApp;
+import nl.han.ica.MaffiaTrap.enemies.Bully;
+import nl.han.ica.MaffiaTrap.main.MaffiaTrapApp;
+import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.AnimatedSpriteObject;
+import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 
-import java.util.Random;
+import java.util.List;
 
-public class Fireball extends AnimatedSpriteObject {
+public class Fireball extends AnimatedSpriteObject implements ICollidableWithGameObjects {
 
     private MaffiaTrapApp app;
     private int x;
@@ -31,5 +34,15 @@ public class Fireball extends AnimatedSpriteObject {
         //Richting + snelheid vuurbal//
         int speed = 3;
         setDirectionSpeed(90, speed);
+    }
+
+    public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
+
+        for (GameObject g : collidedGameObjects) {
+            //Als speler de deur opent
+            if (g instanceof Bully) {
+                app.deleteGameObject(g);
+            }
+        }
     }
 }

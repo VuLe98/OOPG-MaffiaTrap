@@ -1,4 +1,4 @@
-package nl.han.ica.MaffiaTrap;
+package nl.han.ica.MaffiaTrap.gameStates;
 
 public enum MaffiaState {
     START_OF_GAME,

@@ -1,6 +1,6 @@
 package nl.han.ica.MaffiaTrap.entities;
 
-import nl.han.ica.MaffiaTrap.MaffiaTrapApp;
+import nl.han.ica.MaffiaTrap.main.MaffiaTrapApp;
 import nl.han.ica.MaffiaTrap.powerUps.ExtraLife;
 import nl.han.ica.MaffiaTrap.powerUps.Pistol;
 import nl.han.ica.MaffiaTrap.powerUps.PowerUp;
