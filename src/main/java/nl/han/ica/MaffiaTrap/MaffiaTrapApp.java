@@ -1,5 +1,7 @@
 package nl.han.ica.MaffiaTrap;
 
+import nl.han.ica.MaffiaTrap.enemies.Lamp;
+import nl.han.ica.MaffiaTrap.enemies.LampSpawner;
 import nl.han.ica.MaffiaTrap.entities.Chest;
 import nl.han.ica.MaffiaTrap.entities.IPlayer;
 import nl.han.ica.MaffiaTrap.powerUps.Pistol;
@@ -74,6 +76,7 @@ public class MaffiaTrapApp extends GameEngine implements IPlayer {
 
         if(state == MaffiaState.START_OF_GAME) {
             createGameObjects();
+            createLampSpawner();
         }
         else if (state == MaffiaState.GAMEWIN) {
             Winner doorWin = new Winner(this);
@@ -92,7 +95,6 @@ public class MaffiaTrapApp extends GameEngine implements IPlayer {
 
         Door door = new Door(this,worldWidth, groundBorderY);
         this.addGameObject(door);
-
 
     }
 
@@ -138,6 +140,9 @@ public class MaffiaTrapApp extends GameEngine implements IPlayer {
         Chest chest = new Chest(this,player, r.nextInt(worldWidth) - 100,groundBorderY + 100);
         this.addGameObject(chest);
     }
+
+    private void createLampSpawner(){
+        LampSpawner lampSpawner = new LampSpawner(this,0.5);}
 
 
     /**
