@@ -2,7 +2,6 @@ package nl.han.ica.MaffiaTrap.shootEffects;
 
 import nl.han.ica.MaffiaTrap.traps.Bully;
 import nl.han.ica.MaffiaTrap.main.MaffiaTrapApp;
-import nl.han.ica.OOPDProcessingEngineHAN.Alarm.Alarm;
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.AnimatedSpriteObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
@@ -18,9 +17,6 @@ import java.util.List;
 public class Fireball extends AnimatedSpriteObject implements ICollidableWithGameObjects {
 
     private MaffiaTrapApp app;
-    private int x;
-    private int y;
-
     /**
      * Constructor voor het maken van een vuurbal.
      * @param app Referentie naar de wereld (MaffiaTrapApp).
@@ -60,4 +56,5 @@ public class Fireball extends AnimatedSpriteObject implements ICollidableWithGam
             }
         }
     }
+
 }

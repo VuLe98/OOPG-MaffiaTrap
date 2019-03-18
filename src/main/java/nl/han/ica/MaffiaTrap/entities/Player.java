@@ -61,6 +61,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithGameO
                 app.deleteGameObject(g);
             }
 
+            //Als speler de random gekozen powerup uit de schatkist aanraakt
             if(g instanceof PowerUp){
                 ((PowerUp) g).doAction();
                 app.deleteGameObject(g);
@@ -82,7 +83,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithGameO
      * @param g Het object dat verwijderd moet worden.
      */
 
-    public void removeLife(GameObject g){
+    private void removeLife(GameObject g){
         app.deleteGameObject(g);
         app.countOffExtraLife();
         if(app.getCurrentLives() == 0){

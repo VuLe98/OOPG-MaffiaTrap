@@ -18,9 +18,7 @@ import java.util.Random;
 public class Chest extends SpriteObject {
 
     private IPlayer player;
-
     private MaffiaTrapApp app;
-
     private int xPowerUp;
 
     /**
@@ -41,15 +39,14 @@ public class Chest extends SpriteObject {
     }
 
     @Override
-    public void update(){
-    }
+    public void update(){ }
 
     /**
      * Kiest een random power-up wanneer de speler de schatkist aanraakt.
      */
 
     public void initializePowerUp(){
-        int amountOfPowerUps = generateRandomNumber(2);
+        int amountOfPowerUps = generateRandomNumber(1);
         PowerUp powerUp = null;
         switch(amountOfPowerUps) {
             case 1:

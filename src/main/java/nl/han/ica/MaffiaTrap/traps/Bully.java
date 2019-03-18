@@ -3,6 +3,7 @@ package nl.han.ica.MaffiaTrap.traps;
 import nl.han.ica.MaffiaTrap.main.MaffiaTrapApp;
 import nl.han.ica.MaffiaTrap.shootEffects.Bullet;
 import nl.han.ica.MaffiaTrap.shootEffects.BulletSpawner;
+import nl.han.ica.MaffiaTrap.shootEffects.Fireball;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
 
@@ -15,6 +16,7 @@ public class Bully extends SpriteObject {
 
     private MaffiaTrapApp app;
     private BulletSpawner spawner;
+    private Fireball fireball;
 
     /** Constructor
      * @param app Referentie naar de wereld (SuperMeronApp)
@@ -47,7 +49,7 @@ public class Bully extends SpriteObject {
     /**
      * Maakt de afvuurder van schietkogels aan, die een gangster gebruikt.
      */
-    public void makeBulletSpawner(){
+    private void makeBulletSpawner(){
         spawner = new BulletSpawner(app,0.25, (int) x, (int) y);
     }
 

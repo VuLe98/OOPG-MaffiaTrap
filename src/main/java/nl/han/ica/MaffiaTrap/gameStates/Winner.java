@@ -12,6 +12,7 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
 
 
 public class Winner extends SpriteObject {
+
     private MaffiaTrapApp app;
 
     /** Constructor

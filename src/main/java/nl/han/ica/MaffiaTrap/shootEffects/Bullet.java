@@ -1,6 +1,5 @@
 package nl.han.ica.MaffiaTrap.shootEffects;
 
-import nl.han.ica.MaffiaTrap.entities.Player;
 import nl.han.ica.MaffiaTrap.main.MaffiaTrapApp;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.AnimatedSpriteObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
@@ -16,7 +15,6 @@ public class Bullet extends AnimatedSpriteObject {
     private MaffiaTrapApp app;
     private int x;
     private int y;
-    private Player maffia;
 
     /**
      * Constructor voor het maken van een schietkogel.

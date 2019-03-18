@@ -1,7 +1,6 @@
 package nl.han.ica.MaffiaTrap.shootEffects;
 
 import nl.han.ica.MaffiaTrap.main.MaffiaTrapApp;
-import nl.han.ica.MaffiaTrap.traps.Bully;
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.Alarm;
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.IAlarmListener;
 
@@ -40,7 +39,7 @@ public class BulletSpawner implements IAlarmListener {
      * Functie die een schietkogel aanmaakt
      */
 
-    public void createObject(){
+    private void createObject(){
         Bullet bullet = new Bullet(app, x, y);
         app.addGameObject(bullet);
     }
@@ -56,12 +55,6 @@ public class BulletSpawner implements IAlarmListener {
         alarm.start();
     }
 
-    private void stopAlarm() {
-        alarm.removeTarget(this);
-        alarm.stop();
-    }
-
-
     /**
      * Maakt schietkogels aan.
      * @param alarmName Naam van het alarm
@@ -69,7 +62,7 @@ public class BulletSpawner implements IAlarmListener {
 
     @Override
     public void triggerAlarm(String alarmName){
-        createObject();
-        startAlarm();
+            createObject();
+            startAlarm();
     }
 }
