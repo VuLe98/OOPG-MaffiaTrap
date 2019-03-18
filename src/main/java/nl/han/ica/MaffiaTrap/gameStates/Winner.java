@@ -5,9 +5,9 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
 
 /**
- * winnerScreen.java
+ * Winner.java
  * Initialiseert het scherm wanneer je wint.
- * @author Lucas Hopman & Vu Le
+ * @author Vu Le
  */
 
 

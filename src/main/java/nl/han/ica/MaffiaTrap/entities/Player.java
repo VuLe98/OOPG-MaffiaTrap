@@ -1,7 +1,8 @@
 package nl.han.ica.MaffiaTrap.entities;
 
-import nl.han.ica.MaffiaTrap.enemies.Bully;
-import nl.han.ica.MaffiaTrap.enemies.Lamp;
+import nl.han.ica.MaffiaTrap.shootEffects.Bullet;
+import nl.han.ica.MaffiaTrap.traps.Bully;
+import nl.han.ica.MaffiaTrap.traps.Lamp;
 import nl.han.ica.MaffiaTrap.standardGameObjects.Door;
 import nl.han.ica.MaffiaTrap.gameStates.MaffiaState;
 import nl.han.ica.MaffiaTrap.main.MaffiaTrapApp;
@@ -16,8 +17,8 @@ import java.util.List;
 
 /**
  * Player.java
+ * De spelersklasse.
  * @author Vu Le
- * De spelersklasse
  */
 
 public class Player extends AnimatedSpriteObject implements ICollidableWithGameObjects{
@@ -28,8 +29,8 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithGameO
     private MaffiaTrapApp app;
 
     /** Constructor
-     * @param world Referentie naar de binnenkant van de game (GameEngine)
-     * @param app Referentie naar de wereld (SuperMeronApp)
+     * @param world Referentie naar de binnenkant van de game (GameEngine).
+     * @param app Referentie naar de wereld (SuperMeronApp).
      */
 
     public Player(GameEngine world, MaffiaTrapApp app) {
@@ -52,6 +53,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithGameO
                 app.state = MaffiaState.GAMEWIN;
             }
 
+            //Als speler de schatkist aanraakt
             if (g instanceof Chest) {
                 ((Chest) g).initializePowerUp();
                 app.deleteGameObject(g);
@@ -66,25 +68,28 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithGameO
         }
 
         for(GameObject l: collidedGameObjects){
-            if (l instanceof Lamp) {
-                app.deleteGameObject(l);
-                app.countOffExtraLife();
-                if(app.getCurrentLives() == 0){
-                    getGameOver();
-                }
-            }
-            if(l instanceof Bully){
-                getGameOver();
+            if (l instanceof Lamp || l instanceof Bully || l instanceof Bullet) {
+                removeLife(l);
             }
         }
+
     }
 
-    private void getGameOver(){
-        speed = 0;
-        setxSpeed(0);
-        setY(0);
-        setX(0);
-        app.state = MaffiaState.GAMEOVER;
+    /**
+     * Verlaagt het levensaantal van de speler met 1, checkt ook wanneer speler doodgaat.
+     * @param g Het object dat verwijderd moet worden.
+     */
+
+    public void removeLife(GameObject g){
+        app.deleteGameObject(g);
+        app.countOffExtraLife();
+        if(app.getCurrentLives() == 0){
+            speed = 0;
+            setxSpeed(0);
+            setY(0);
+            setX(0);
+            app.state = MaffiaState.GAMEOVER;
+        }
     }
 
     /**
@@ -126,9 +131,9 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithGameO
     }
 
     /**
-     * Initialiseert de toetsenbordkeys voor het spelen
-     * @param keyCode Pijltjestoetsen in dit geval
-     * @param key Springtoets in dit geval
+     * Initialiseert de toetsenbordkeys voor het spelen.
+     * @param keyCode Pijltjestoetsen in dit geval.
+     * @param key Springtoets in dit geval.
      */
     @Override
     public void keyPressed(int keyCode, char key) {

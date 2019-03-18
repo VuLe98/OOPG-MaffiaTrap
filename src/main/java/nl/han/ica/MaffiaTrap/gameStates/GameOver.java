@@ -4,6 +4,12 @@ import nl.han.ica.MaffiaTrap.main.MaffiaTrapApp;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
 
+/**
+ * GameOver.java
+ * Hier wordt de gameover-scherm geinitialiseerd.
+ * @author Vu Le
+ */
+
 public class GameOver extends SpriteObject {
 
     private MaffiaTrapApp app;
