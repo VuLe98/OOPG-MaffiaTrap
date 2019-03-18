@@ -8,9 +8,21 @@ package nl.han.ica.MaffiaTrap.entities;
 
 public interface IPlayer {
 
+    /**
+     * Voeg extra leven toe aan speler (zie ExtraLife.java)
+     */
+
     void addExtraLife();
 
+    /**
+     * Verlaag extra leven van de speler (zie ExtraLife.java)
+     */
+
     void countOffExtraLife();
+
+    /**
+     * Maak de vuurbal aan (zie Pistol.java)
+     */
 
     void makeFireball();
 }
