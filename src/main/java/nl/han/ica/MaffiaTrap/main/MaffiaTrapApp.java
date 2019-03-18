@@ -240,7 +240,9 @@ public class MaffiaTrapApp extends GameEngine implements IPlayer {
 
     @Override
     public void makeFireball(){
-        Fireball fireball = new Fireball(this,xChest + 50,400);
+        int xFireball = xChest + 50;
+        int yFireball = 400;
+        Fireball fireball = new Fireball(this,xFireball,yFireball);
         this.addGameObject(fireball);
     }
 

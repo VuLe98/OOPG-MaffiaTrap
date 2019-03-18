@@ -35,7 +35,7 @@ public class Pistol extends PowerUp {
 
     @Override
     public void doAction(){
-        createFireball();
+        shootFireball();
     }
 
     @Override
@@ -44,7 +44,7 @@ public class Pistol extends PowerUp {
     /**
      * Maakt de vuurbal aan die uit de pistool komt
      */
-    public void createFireball(){
+    public void shootFireball(){
         app.makeFireball();
     }
 
