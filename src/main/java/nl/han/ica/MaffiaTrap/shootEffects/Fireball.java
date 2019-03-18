@@ -2,6 +2,7 @@ package nl.han.ica.MaffiaTrap.shootEffects;
 
 import nl.han.ica.MaffiaTrap.traps.Bully;
 import nl.han.ica.MaffiaTrap.main.MaffiaTrapApp;
+import nl.han.ica.OOPDProcessingEngineHAN.Alarm.Alarm;
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.AnimatedSpriteObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
@@ -53,7 +54,7 @@ public class Fireball extends AnimatedSpriteObject implements ICollidableWithGam
     public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
 
         for (GameObject g : collidedGameObjects) {
-            //Als speler de deur opent
+            //Als de vuurbal de gangster raakt
             if (g instanceof Bully) {
                 app.deleteGameObject(g);
             }

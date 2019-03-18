@@ -21,6 +21,8 @@ public class Chest extends SpriteObject {
 
     private MaffiaTrapApp app;
 
+    private int xPowerUp;
+
     /**
      * Constructor van de klasse Chest
      * @param app Referentie naar de wereld (MaffiaTrapApp).
@@ -33,6 +35,7 @@ public class Chest extends SpriteObject {
         super(new Sprite("src/main/java/nl/han/ica/MaffiaTrap/media/chest.png"));
         this.app = app;
         this.player = player;
+        this.xPowerUp = x + 50;
         this.setX(x);
         this.setY(y);
     }
@@ -48,7 +51,6 @@ public class Chest extends SpriteObject {
     public void initializePowerUp(){
         int amountOfPowerUps = generateRandomNumber(2);
         PowerUp powerUp = null;
-        int xPowerUp = (int) x + 50;
         switch(amountOfPowerUps) {
             case 1:
                 powerUp = new Pistol(app, player, xPowerUp, (int) y);

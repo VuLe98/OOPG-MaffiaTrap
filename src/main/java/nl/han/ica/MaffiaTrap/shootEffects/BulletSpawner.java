@@ -1,10 +1,9 @@
 package nl.han.ica.MaffiaTrap.shootEffects;
 
 import nl.han.ica.MaffiaTrap.main.MaffiaTrapApp;
+import nl.han.ica.MaffiaTrap.traps.Bully;
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.Alarm;
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.IAlarmListener;
-
-import java.util.Random;
 
 /**
  * BulletSpawner.java
@@ -19,6 +18,7 @@ public class BulletSpawner implements IAlarmListener {
     private double bulletsPerSecond; //Aantal bullets per seconde.
     private int x;
     private int y;
+    private Alarm alarm;
 
     /**
      * Constructor voor het maken van een afvuurder van schietkogels.
@@ -30,7 +30,6 @@ public class BulletSpawner implements IAlarmListener {
 
     public BulletSpawner(MaffiaTrapApp app, double bulletsPerSecond, int x, int y){
         this.app = app;
-        Random rand = new Random();
         this.bulletsPerSecond = bulletsPerSecond;
         this.x = x;
         this.y = y;
@@ -50,11 +49,18 @@ public class BulletSpawner implements IAlarmListener {
      * Start de timer om schietkogels af te vuren
      */
 
+
     private void startAlarm() {
-        Alarm alarm = new Alarm("Lamp", (1/bulletsPerSecond));
+        alarm = new Alarm("Lamp", (1/bulletsPerSecond));
         alarm.addTarget(this);
         alarm.start();
     }
+
+    private void stopAlarm() {
+        alarm.removeTarget(this);
+        alarm.stop();
+    }
+
 
     /**
      * Maakt schietkogels aan.
@@ -66,7 +72,4 @@ public class BulletSpawner implements IAlarmListener {
         createObject();
         startAlarm();
     }
-
-
-
 }

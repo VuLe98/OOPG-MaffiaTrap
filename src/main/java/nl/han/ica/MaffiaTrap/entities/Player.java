@@ -12,6 +12,7 @@ import nl.han.ica.OOPDProcessingEngineHAN.Engine.GameEngine;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.AnimatedSpriteObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
+import nl.han.ica.OOPDProcessingEngineHAN.Persistence.IPersistence;
 
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithGameO
 
     private int speed = 3;
     private GameEngine world;
+    private IPersistence persistence;
     private String keyGiven;
     private MaffiaTrapApp app;
 
@@ -160,5 +162,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithGameO
         }
 
     }
+
+
 }
 

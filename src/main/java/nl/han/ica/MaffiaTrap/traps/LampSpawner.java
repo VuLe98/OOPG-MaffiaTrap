@@ -29,7 +29,6 @@ public class LampSpawner implements IAlarmListener {
         this.currentAmountofLamps = 0;
         Random rand = new Random();
         this.maxAmountOfLamps = rand.nextInt(3) + 1;
-        System.out.println(maxAmountOfLamps);
         this.lampsPerSecond = lampsPerSecond;
         startAlarm();
     }

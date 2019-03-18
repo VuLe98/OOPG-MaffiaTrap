@@ -1,6 +1,5 @@
 package nl.han.ica.MaffiaTrap.main;
 
-import nl.han.ica.MaffiaTrap.powerUps.Pistol;
 import nl.han.ica.MaffiaTrap.shootEffects.BulletSpawner;
 import nl.han.ica.MaffiaTrap.shootEffects.Fireball;
 import nl.han.ica.MaffiaTrap.traps.Bully;
@@ -35,12 +34,14 @@ public class MaffiaTrapApp extends GameEngine implements IPlayer {
     private IPersistence persistence;
     private IPlayer player;
     private BulletSpawner spawner;
-    private Pistol pistol;
 
     private int worldWidth = 1200;
 
     private int groundBorderY = 370;
     private int currentLives;
+
+    private Random r = new Random();
+    private int xChest = r.nextInt(worldWidth) - 100;
 
     public static void main(String[] args) {
 
@@ -175,8 +176,6 @@ public class MaffiaTrapApp extends GameEngine implements IPlayer {
      */
 
     private void createChest(){
-        Random r = new Random();
-        int xChest = r.nextInt(worldWidth) - 100;
         int yChest = groundBorderY + 100;
         Chest chest = new Chest(this, player, xChest, yChest);
         this.addGameObject(chest);
@@ -241,7 +240,7 @@ public class MaffiaTrapApp extends GameEngine implements IPlayer {
 
     @Override
     public void makeFireball(){
-        Fireball fireball = new Fireball(this,pistol.getXPistol(),400);
+        Fireball fireball = new Fireball(this,xChest + 50,400);
         this.addGameObject(fireball);
     }
 

@@ -47,7 +47,9 @@ public class Bully extends SpriteObject {
     /**
      * Maakt de afvuurder van schietkogels aan, die een gangster gebruikt.
      */
-    private void makeBulletSpawner(){
+    public void makeBulletSpawner(){
         spawner = new BulletSpawner(app,0.25, (int) x, (int) y);
     }
+
+
 }

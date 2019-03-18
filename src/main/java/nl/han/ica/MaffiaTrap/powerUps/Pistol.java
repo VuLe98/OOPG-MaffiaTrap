@@ -42,17 +42,10 @@ public class Pistol extends PowerUp {
     public void update(){ }
 
     /**
-     * Verkrijg de x-cöordinaat van de pistool
-     * @return X-coördinaat van de pistool
-     */
-    public int getXPistol(){
-        return (int) x;
-    }
-
-    /**
      * Maakt de vuurbal aan die uit de pistool komt
      */
     public void createFireball(){
         app.makeFireball();
     }
+
 }
