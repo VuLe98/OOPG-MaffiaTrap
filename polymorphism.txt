@@ -1,6 +1,0 @@
-Polymorphie:
-
-- PowerUp kan verschillende vormen aannemen: ExtraLife en Pistol.
-ExtraLife en Pistol erven allebei functies van PowerUp, maar voeren andere acties uit.
-ExtraLife voegt een extra leven aan de speler toe.
-Pistol vuurt een vuurbal naar de gangster (enemy).
