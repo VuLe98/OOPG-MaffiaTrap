@@ -17,6 +17,7 @@ import java.util.List;
 public class Fireball extends AnimatedSpriteObject implements ICollidableWithGameObjects {
 
     private MaffiaTrapApp app;
+    public boolean didHit;
     /**
      * Constructor voor het maken van een vuurbal.
      * @param app Referentie naar de wereld (MaffiaTrapApp).
@@ -53,6 +54,7 @@ public class Fireball extends AnimatedSpriteObject implements ICollidableWithGam
             //Als de vuurbal de gangster raakt
             if (g instanceof Bully) {
                 app.deleteGameObject(g);
+                didHit = true;
             }
         }
     }

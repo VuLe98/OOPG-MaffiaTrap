@@ -1,5 +1,6 @@
 package nl.han.ica.MaffiaTrap.entities;
 
+import nl.han.ica.MaffiaTrap.entities.interfaces.IPlayer;
 import nl.han.ica.MaffiaTrap.main.MaffiaTrapApp;
 import nl.han.ica.MaffiaTrap.powerUps.ExtraLife;
 import nl.han.ica.MaffiaTrap.powerUps.Pistol;
@@ -33,9 +34,9 @@ public class Chest extends SpriteObject {
         super(new Sprite("src/main/java/nl/han/ica/MaffiaTrap/media/chest.png"));
         this.app = app;
         this.player = player;
-        this.xPowerUp = x + 50;
         this.setX(x);
         this.setY(y);
+        this.xPowerUp = x + 50;
     }
 
     @Override
@@ -53,7 +54,7 @@ public class Chest extends SpriteObject {
                 powerUp = new Pistol(app, player, xPowerUp, (int) y);
                 break;
             case 2:
-                int yExtraLife = (int) y - 100;
+                int yExtraLife = (int) y - 100; //sprite was te groot, dus eerst leek het alsof het extra leven door de grond zakte (Y-coördinaat)
                 powerUp = new ExtraLife(app, player, xPowerUp, yExtraLife);
                 break;
         }

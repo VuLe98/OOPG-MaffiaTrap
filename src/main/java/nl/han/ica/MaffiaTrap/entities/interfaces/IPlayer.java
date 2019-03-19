@@ -1,4 +1,4 @@
-package nl.han.ica.MaffiaTrap.entities;
+package nl.han.ica.MaffiaTrap.entities.interfaces;
 
 /**
  * IPlayer.java

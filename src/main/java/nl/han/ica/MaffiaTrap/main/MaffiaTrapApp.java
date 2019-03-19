@@ -9,7 +9,7 @@ import nl.han.ica.MaffiaTrap.standardGameObjects.Ground;
 import nl.han.ica.MaffiaTrap.gameStates.MaffiaState;
 import nl.han.ica.MaffiaTrap.traps.LampSpawner;
 import nl.han.ica.MaffiaTrap.entities.Chest;
-import nl.han.ica.MaffiaTrap.entities.IPlayer;
+import nl.han.ica.MaffiaTrap.entities.interfaces.IPlayer;
 import nl.han.ica.MaffiaTrap.entities.Player;
 import nl.han.ica.MaffiaTrap.gameStates.Winner;
 import nl.han.ica.OOPDProcessingEngineHAN.Dashboard.Dashboard;
