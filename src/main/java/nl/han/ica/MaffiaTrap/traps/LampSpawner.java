@@ -1,5 +1,6 @@
 package nl.han.ica.MaffiaTrap.traps;
 
+import nl.han.ica.MaffiaTrap.gameStates.MaffiaState;
 import nl.han.ica.MaffiaTrap.main.MaffiaTrapApp;
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.Alarm;
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.IAlarmListener;
@@ -15,9 +16,8 @@ import java.util.Random;
 public class LampSpawner implements IAlarmListener {
 
     private MaffiaTrapApp app;
-    private int currentAmountofLamps; //Huidige hoeveelheid lamps op het scherm.
-    private int maxAmountOfLamps; //Maximale hoeveelheid lamps in de game.
     private double lampsPerSecond; //Aantal lamps per seconde.
+    private Alarm alarm;
 
     /** Constructor
      * @param app Referentie naar de wereld (SuperMeronApp)
@@ -26,9 +26,6 @@ public class LampSpawner implements IAlarmListener {
 
     public LampSpawner(MaffiaTrapApp app, double lampsPerSecond){
         this.app = app;
-        this.currentAmountofLamps = 0;
-        Random rand = new Random();
-        this.maxAmountOfLamps = rand.nextInt(3) + 1;
         this.lampsPerSecond = lampsPerSecond;
         startAlarm();
     }
@@ -37,7 +34,7 @@ public class LampSpawner implements IAlarmListener {
      * Maakt een lamp
      */
 
-    public void createObject(){
+    private void createObject(){
         Random x = new Random();
         Lamp l = new Lamp(app);
         app.addGameObject(l, x.nextInt(600) + 300, 0);
@@ -48,9 +45,13 @@ public class LampSpawner implements IAlarmListener {
      */
 
     private void startAlarm() {
-        Alarm alarm = new Alarm("Lamp", (1/lampsPerSecond));
+        alarm = new Alarm("Lamp", (1/lampsPerSecond));
         alarm.addTarget(this);
         alarm.start();
+    }
+
+    private void stopAlarm(){
+        alarm.stop();
     }
 
     /**
@@ -60,15 +61,13 @@ public class LampSpawner implements IAlarmListener {
 
     @Override
     public void triggerAlarm(String alarmName){
-
-        if (currentAmountofLamps <= maxAmountOfLamps) {
-            createObject();
-            currentAmountofLamps++;
-
+        if(app.state == MaffiaState.GAMEOVER || app.state == MaffiaState.GAMEWIN){
+            stopAlarm();
         }
-        startAlarm();
-
-
+        else{
+            createObject();
+            startAlarm();
+        }
     }
 
 

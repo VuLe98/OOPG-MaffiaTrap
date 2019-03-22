@@ -33,7 +33,8 @@ public class MaffiaTrapApp extends GameEngine implements IPlayer {
     private TextObject dashboardText;
     private IPersistence persistence;
     private IPlayer player;
-    private BulletSpawner spawner;
+    private BulletSpawner bSpawner;
+    private LampSpawner lSpawner;
 
     private int worldWidth = 1200;
 
@@ -41,7 +42,9 @@ public class MaffiaTrapApp extends GameEngine implements IPlayer {
     private int currentLives;
 
     private Random r = new Random();
-    private int xChest = r.nextInt(worldWidth) - 100;
+    private int xChest = r.nextInt(worldWidth) - 300;
+
+    public boolean bullyExists;
 
     public static void main(String[] args) {
 
@@ -59,8 +62,9 @@ public class MaffiaTrapApp extends GameEngine implements IPlayer {
     public void setupGame() {
 
         int worldHeight = 900;
+        int dashboardHeight = 100;
 
-        createDashboard(worldWidth, 100);
+        createDashboard(worldWidth, dashboardHeight);
         createViewWithoutViewport(worldWidth,worldHeight);
 
         state = MaffiaState.START_OF_GAME;
@@ -102,10 +106,11 @@ public class MaffiaTrapApp extends GameEngine implements IPlayer {
      * Maakt 'actieve' gameobjecten aan (objecten die bewegingen uitvoeren).
      */
 
-    public void createActiveGameObjects(){
+    private void createActiveGameObjects(){
         initializePersistence();
         createPlayer();
         createBully();
+        bullyExists = true;
 
         createLampSpawner();
         createChest();
@@ -145,7 +150,7 @@ public class MaffiaTrapApp extends GameEngine implements IPlayer {
      */
 
     private void initializePersistence() {
-        int playerStartLives = 1;
+        int playerStartLives = 1; //Speler start met 1 leven
         persistence = new FilePersistence("main/java/nl/han/ica/MaffiaTrap/media/amountOfLives.txt");
         if (persistence.fileExists()) {
             currentLives = playerStartLives;
@@ -156,7 +161,7 @@ public class MaffiaTrapApp extends GameEngine implements IPlayer {
     /**
      * Vernieuwt het dashboard.
      */
-    public void refreshDashboardText() {
+    private void refreshDashboardText() {
         dashboardText.setText("Amount of lives: "+ currentLives);
     }
 
@@ -186,8 +191,8 @@ public class MaffiaTrapApp extends GameEngine implements IPlayer {
      */
 
     private void createLampSpawner(){
-        double lampsPerSec = 0.5;
-        LampSpawner lampSpawner = new LampSpawner(this, lampsPerSec);
+        double lampsPerSec = 0.3;
+        lSpawner = new LampSpawner(this, lampsPerSec);
     }
 
     /**
@@ -195,9 +200,9 @@ public class MaffiaTrapApp extends GameEngine implements IPlayer {
      */
 
     private void createBully(){
-        int xBully = worldWidth - 200;
+        int xBully = xChest + 300;
         int yBully = groundBorderY + 100;
-        Bully bully = new Bully(this, spawner, xBully, yBully);
+        Bully bully = new Bully(this, bSpawner, xBully, yBully);
         addGameObject(bully);
     }
 
@@ -253,6 +258,5 @@ public class MaffiaTrapApp extends GameEngine implements IPlayer {
     public int getCurrentLives(){
         return currentLives;
     }
-
 
 }

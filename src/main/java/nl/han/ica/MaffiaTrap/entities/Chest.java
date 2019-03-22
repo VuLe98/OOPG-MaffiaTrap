@@ -34,20 +34,41 @@ public class Chest extends SpriteObject {
         super(new Sprite("src/main/java/nl/han/ica/MaffiaTrap/media/chest.png"));
         this.app = app;
         this.player = player;
+        this.xPowerUp = x + 50;
         this.setX(x);
         this.setY(y);
-        this.xPowerUp = x + 50;
     }
 
     @Override
-    public void update(){ }
+    public void update(){
+
+        int permXChest;
+        final int size = 400;
+
+        int maxXChest = app.getWidth() - size;
+        int minXChest = 300;
+
+        int distanceBetweenChestAndPowerUp = 50;
+
+        if(getX() >= maxXChest) {
+            permXChest = maxXChest;
+            setX(permXChest);
+            xPowerUp = permXChest + distanceBetweenChestAndPowerUp;
+        }
+        else if(getX() <= minXChest){
+            permXChest = minXChest;
+            setX(permXChest);
+            xPowerUp = permXChest + distanceBetweenChestAndPowerUp;
+        }
+    }
+
 
     /**
      * Kiest een random power-up wanneer de speler de schatkist aanraakt.
      */
 
     public void initializePowerUp(){
-        int amountOfPowerUps = generateRandomNumber(1);
+        int amountOfPowerUps = generateRandomNumber(2);
         PowerUp powerUp = null;
         switch(amountOfPowerUps) {
             case 1:

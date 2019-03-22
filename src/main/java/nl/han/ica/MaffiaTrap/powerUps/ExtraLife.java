@@ -13,8 +13,6 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 public class ExtraLife extends PowerUp{
 
     private MaffiaTrapApp app;
-    private int x;
-    private int y;
 
     /**
      * Constructor voor het maken van een extra leven.
@@ -43,9 +41,7 @@ public class ExtraLife extends PowerUp{
 
 
     @Override
-    public void update() {
-
-    }
+    public void update() { }
 
     /**
      * Voeg een extra leven toe aan de speler.

@@ -1,5 +1,6 @@
 package nl.han.ica.MaffiaTrap.shootEffects;
 
+import nl.han.ica.MaffiaTrap.gameStates.MaffiaState;
 import nl.han.ica.MaffiaTrap.main.MaffiaTrapApp;
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.Alarm;
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.IAlarmListener;
@@ -18,6 +19,7 @@ public class BulletSpawner implements IAlarmListener {
     private int x;
     private int y;
     private Alarm alarm;
+
 
     /**
      * Constructor voor het maken van een afvuurder van schietkogels.
@@ -56,13 +58,26 @@ public class BulletSpawner implements IAlarmListener {
     }
 
     /**
+     * Stop de timer om schiefkogels af te vuren
+     */
+
+    private void stopAlarm() {
+        alarm.stop();
+    }
+
+    /**
      * Maakt schietkogels aan.
      * @param alarmName Naam van het alarm
      */
 
     @Override
     public void triggerAlarm(String alarmName){
+        if(!app.bullyExists || app.state == MaffiaState.GAMEOVER || app.state == MaffiaState.GAMEWIN){
+            stopAlarm();
+        }
+        else {
             createObject();
             startAlarm();
+        }
     }
 }

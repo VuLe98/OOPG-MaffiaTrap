@@ -24,10 +24,8 @@ import java.util.List;
 
 public class Player extends AnimatedSpriteObject implements ICollidableWithGameObjects{
 
-    private int speed = 3;
+    private int speed = 2;
     private GameEngine world;
-    private IPersistence persistence;
-    private String keyGiven;
     private MaffiaTrapApp app;
 
     /** Constructor
@@ -54,15 +52,13 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithGameO
                 speed = 0;
                 app.state = MaffiaState.GAMEWIN;
             }
-
+            else if (g instanceof Chest) {
             //Als speler de schatkist aanraakt
-            if (g instanceof Chest) {
                 ((Chest) g).initializePowerUp();
                 app.deleteGameObject(g);
             }
-
             //Als speler de random gekozen powerup uit de schatkist aanraakt
-            if(g instanceof PowerUp){
+            else if(g instanceof PowerUp){
                 ((PowerUp) g).doAction();
                 app.deleteGameObject(g);
             }
@@ -71,8 +67,12 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithGameO
         }
 
         for(GameObject l: collidedGameObjects){
-            if (l instanceof Lamp || l instanceof Bully || l instanceof Bullet) {
-                removeLife(l);
+            if (l instanceof Lamp || l instanceof Bullet) {
+                app.deleteGameObject(l);
+                removeLife();
+            }
+            else if(l instanceof Bully){
+                removeLife();
             }
         }
 
@@ -80,11 +80,9 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithGameO
 
     /**
      * Verlaagt het levensaantal van de speler met 1, checkt ook wanneer speler doodgaat.
-     * @param g Het object dat verwijderd moet worden.
      */
 
-    private void removeLife(GameObject g){
-        app.deleteGameObject(g);
+    private void removeLife(){
         app.countOffExtraLife();
         if(app.getCurrentLives() == 0){
             speed = 0;
@@ -140,7 +138,6 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithGameO
      */
     @Override
     public void keyPressed(int keyCode, char key) {
-
         if (keyCode == world.LEFT) {
             setDirectionSpeed(270, speed);
             setCurrentFrameIndex(0);
@@ -152,7 +149,6 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithGameO
         if (keyCode == world.RIGHT) {
             setDirectionSpeed(90, speed);
             setCurrentFrameIndex(1);
-            keyGiven = "RIGHT";
         }
 
         if (key == ' ') {
